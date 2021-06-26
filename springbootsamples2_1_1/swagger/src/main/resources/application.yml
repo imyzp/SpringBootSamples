@@ -1,0 +1,7 @@
+spring:
+  servlet:
+    # 指定上下文路径
+    context-path: /springbootsamples
+server:
+  # 指定端口
+  port: 8082
