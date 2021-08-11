@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    # 指定生效的的文件
+    active: dev
+  servlet:
+    # 指定上下文路径
+    context-path: /springbootsamples

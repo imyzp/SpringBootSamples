@@ -1,0 +1,18 @@
+spring:
+  profiles: dev
+  # 邮件相关
+  mail:
+    host: smtp.qq.com
+    #发送方
+    username: 601405772@qq.com
+    #设置QQ邮箱对应授权码，需要到里邮箱里生成，具体百度
+    password: xihoskyjqpyhbdca
+    #指定安全连接
+    properties:
+      smtp:
+        ssl:
+          enable: true
+server:
+  # 指定端口
+  port: 8081
+

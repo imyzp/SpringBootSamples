@@ -1,0 +1,83 @@
+## 根据activiti6.0.0官方用户指南学习，这个笔记主要是写与springboot整合的说明及挑重要的出来做笔记,一些不重要的章节就省略了，或者在我写的笔记中一笔带过
+- 2.Getting Started 开始学习
+    - 2.1 One minute version 
+        - 这章节介绍你只花一分钟就可以启动activiti的事例，先从官网http://activiti.org/download.html下载activiti6.0.0的包，解压出来
+        - 找到activiti-app.war文件，把它放到本地tomcat的webapps目录下，然后启动tomcat,前提是本地有安装java和tomcat
+        - 启动完成后，到浏览器输入 http://localhost:8080/activiti-app，端口看你的tomcat，默认都是8080，页面输入账号admin密码test
+        - 这个是默认采用h2的一个嵌入式存储,如果想用自己配置的数据库的话，就继续往下了解。
+        - 这个章节就是让你只要花一分钟时间就可以启动一个activiti程序，启动后我们可以使用它，但怎么使用对于刚入门activiti的人来说，有点困难，
+        - 所以我们启动后登录。看到里面的内容可以试玩一下，具体怎么用还是继续往下看吧。
+- 3.Configuration 配置
+    - 官网讲了那么多，我这里就总结重要的（这里只列举，后面会介绍springboot怎么实现）
+    - ProcessEngine 类是所有流程功能实现的核心类，获取这个类的方法有许多，如下：
+        - 1、添加配置文件：activiti.cfg.xml
+        - 2、通过配置类ProcessEngineConfiguration 获取
+    - 数据库配置说明
+        - 默认采用 MyBatis实现，像我们平时一样这里也建议配置上连接池如c3po，当有许多请求时可以更加有弹性
+        - 支持的数据库有：h2、mysql、oracle、postgres、db2、mssql
+    - 表说明
+        - ACT_RE_*：RE代表repository,这一类的表保存的是图片、规则等内容。
+        - ACT_RU_*：RU代表runtime,这一类的表保存流程在运行中的一些信息，流程走完对应信息也会删除，这样保证表时数据少并且执行速度快速
+        - ACT_ID_*：ID代表identity,这类表保存用户和用户组信息，通常我们工程中有自己的的用户表管理，不需要用他的
+        - ACT_HI_*：HI代表history,这类表保存历史信息，如过去的流程信息、变量信息、任务等。
+        - ACT_GE_*：GE代表general,这类表保存一般的信息，通常多个地方都会用的到。
+    - 接下来文档介绍了些功能接口等。我们要知道怎么使用，最好本地代码必须可以跑起来啊，我就粗略的看了下功能了，这里也不说明了，等把springboot配置起来，在具体说明用法
+- 4.spring integration 整合spring与activiti（这一部分我们重点说明）
+    - ProcessEngine 配置：
+        - 我们需要在org.activiti.spring.ProcessEngineFactoryBean类的属性 processEngineConfiguration 来配置 ProcessEngine
+        - processEngineConfiguration 类型为 org.activiti.spring.SpringProcessEngineConfiguration
+    - springboot 配置一步步从简单到复杂
+        - 1、在pom中添加jar,参见 activiti相关
+        - 2、我们先加上数据库的jar,参见pom中 h2相关  （activiti默认内置h2,先把它用起来在说）
+        - 3、在resources目录下添加processes目录，在这个目录下添加流程的BPM文件（百度idea如何画activiti流程图）
+        - 4、启动项目，这时会报错，由于activiti6.0.0出来时springboot2还没出，需要在启动类上加exclude = SecurityAutoConfiguration.class，就可以启动了
+            -   启动项目时发生了什么：由于添加的h2的驱动包，activiti内置的h2自动将processes目录下的流程图进行了配置
+            -   activiti的 ProcessEngine 类创建并暴露出来
+            -   所有的activiti 服务类，全部暴露给了sping
+            -   创建了 Spring Job Executor
+            -   发布了processes目录下的流程
+        - 5、我们测试下activiti有没有配置成功
+            - 在启动类中加  测试activiti ，启动工程看是否有打印如下内容： 
+                - 流程定义数量：1
+                - 任务定义数量: 0
+                - 流程启动后的任务数量: 1
+            - 以上打印了说明我们配置成功了，以下我们就把自己的配置如数据库等配置到activi中
+        - 6、更改默认的 h2 数据库为自己配置的数据库
+            - 先把pom中 h2相关注释掉
+            - 要更改数据库只要重写 DataSource 类，springboot为我们提供了 DataSourceBuilder. 
+            - com.yzp.activiti.config.datasource 查看 配置数据库
+            - 我们是配置了 mysql的数据库，要加上 mysql驱动包。查看pom中 mysql相关
+            - 配置数据库连接池，官方文档用 tomcat的连接池。我们照着配置。查看pom中 tomcat数据库连接池
+            - 启动项目试下：如果报错百度查下，我启动时报错查了下是数据库的url配置错误了，更改完成功启动
+            - 启动完后发现与h2时打印的内容是一样的说明数据库配置成功切换了。在到数据库中看了下发现多了好多以act开头的表。
+            - 我们多启动几次工程发现打印的内容中的任务数量是增加的，这就是与h2不同之处。说明mysql有记录了之前的任务数据而h2不会保存之前的任务数据。
+            - 目前为止我们已经可以用自己的数据库了，接下来我们就要把activiti使用起来,实话说这官方文档的的阅读性真的很差。
+        - 7、使用activiti
+            - 我们可以用自己的数据库了，那么我们就要写方法接口来操作它，springboot为我们提供了rest风格的接口，只要引入 web依赖。查看 pom中 web相关
+            - 先写一个 简单的service ，查看 com.yzp.activiti.service.MyService
+            - 然后需要写一个rest风格的接口 ，查看  com.yzp.activiti.controller.MyRestController。测试这两个接口我们可以用postman工具
+            - postman工具的使用就不多说了，不会百度也简单。
+            - 注意点：启动流程是根据流程实例id，查看任务执行人的任务信息是根据任务执行人assignee，这两个参数都是在流程图里定义的。
+            - 以上应该都没什么问题了，现在我们已经可以启动任务和查看任务了，我们在工程一般要与数据库交互，如mybatis，jpa等使用。
+            - 官网介绍了使用jpa,我们就照着做，让我们可以结合数据库，更好的使用activiti。
+        - 8、添加JPA支持
+            - 添加 jar包，查看pom中  jpa activiti相关
+            - 现在可以使用jpa了，我们添加一个实体类 查看 com.yzp.activiti.model.Person，其中注解意思不懂可以百度下，有用过jpa的人就明白了。
+            - 如果使用的不是使用的内存数据库（in-memory database 如h2）,实体类对应的表是不会自动创建的，需要添加一些配置才可以，我们使用mysql
+            - 所以我们需要添加配置 查看 application.yml 中 jpa相关的配置。
+            - 我们在写一个查寻表的接口 查看 com.yzp.activiti.mapper.PersonRepository.findByUsername
+            - 这个接口继承了 JpaRepository<Person,Long>，他的作用就是为我们提供了增删改查的接口，我们自己加了个接口 findByUsername.
+            - 有了这个接口后，我们在改装下 com.yzp.activiti.service.MyService，我们添加了事务的注解、与Person的一些操作
+            - 因为 Person实体是新建的，所以项目启动时我们需要插入点数据，利用下 CommandLineRunner 查看 com.yzp.activiti.RunApplication 中‘项目启动 创建 person’
+            - 接口 com.yzp.activiti.controller.MyRestController 中的启动流程也相应更改下。
+            - 为了让activiti与Person关联上，我们在bpmn文件中修改 assignee 为  ${person.id}
+            - 下面我们就测试下集成jpa与activiti有没有集成成功。
+            - 先启动工程
+            - 我这里报一个错 org.hibernate.AnnotationException: No identifier specified for entity ，查了下Person的@id注解导的包错了，修改下重新启动没报错
+            - 到数据库查看了下，果然增加了person表，而且表里增加了我们设置的两条数据，说明jpa配置成功了
+            - 我们在看下 与activiti的配置
+            - 用postman工具调用 com.yzp.activiti.controller.MyRestController中startProcessInstance 参数用StartProcessRepresentation保存。使用我们刚才插入的
+            - Person中的username,这里要注意启动流程时存入map的key要为person，这样bpmn文件中的  ${person.id} 才能取到值。
+            - 我们在调用 com.yzp.activiti.controller.MyRestController中 根据处理人查看任务信息，由于我们用的assignee为 ${person.id}，所以传参用刚才启动流程对应 person.id值
+            - 这里启动流程和查看任务都成功调用，说明都配置成功了，如果有报错一般百度都能查到原因。
+            - 我们这里到了一个阶段：目前我们已经可以 利用自己的mysql数据库启动activiti流程
