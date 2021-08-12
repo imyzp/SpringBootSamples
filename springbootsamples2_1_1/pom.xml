@@ -4,15 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <modules>
-        <module>basic</module>
-        <module>swagger</module>
-        <module>redis</module>
-        <module>mybatis</module>
-        <module>activity</module>
-        <module>lombok</module>
-        <module>mail</module>
-    </modules>
 
     <!-- springboot 父级依赖(使常用依赖省去version) -->
     <parent>

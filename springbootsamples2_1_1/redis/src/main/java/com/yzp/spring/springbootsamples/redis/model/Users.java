@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.redis.model;
+package com.yzp.spring.springbootsamples2_3_6.redis.model;
 
 import java.io.Serializable;
 

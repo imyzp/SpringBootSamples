@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.redis.util;
+package com.yzp.spring.springbootsamples2_3_6.redis.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

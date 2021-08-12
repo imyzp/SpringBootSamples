@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.redis.config;
+package com.yzp.spring.springbootsamples2_3_6.redis.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

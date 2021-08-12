@@ -1,6 +1,6 @@
-package com.yzp.spring.springbootsamples.redis.controller;
+package com.yzp.spring.springbootsamples2_3_6.redis.controller;
 
-import com.yzp.spring.springbootsamples.redis.model.Users;
+import com.yzp.spring.springbootsamples2_3_6.redis.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;

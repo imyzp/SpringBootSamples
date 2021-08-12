@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yzp.spring.springsamples.mybatis.mapper.UsersMapper">
+<mapper namespace="com.yzp.spring.springbootsamples.mybatis.mapper.UsersMapper">
 
 
-    <insert id="addUsers" parameterType="com.yzp.spring.springsamples.mybatis.model.Users">
+    <insert id="addUsers" parameterType="com.yzp.spring.springbootsamples.mybatis.model.Users">
         insert into users(loginname,password)
         values(#{loginName},#{passWord})
     </insert>

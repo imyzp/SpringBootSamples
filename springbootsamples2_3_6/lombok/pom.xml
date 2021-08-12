@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.yzp.spring.springbootsamples2_3_6</groupId>
+    <groupId>com.yzp.spring.springbootsamples</groupId>
     <artifactId>lombok</artifactId>
 
     <dependencies>

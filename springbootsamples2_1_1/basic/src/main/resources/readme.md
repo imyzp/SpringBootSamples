@@ -50,7 +50,7 @@ com.yzp.spring.springbootsamples.basic.schedule.ScheduleTask
 
 ### 异步任务
 
-com.yzp.spring.springbootsamples.basic.controller.AsyncController
+com.yzp.spring.springbootsamples.basic.async.controller.AsyncController
 
 ### 发送邮件
 

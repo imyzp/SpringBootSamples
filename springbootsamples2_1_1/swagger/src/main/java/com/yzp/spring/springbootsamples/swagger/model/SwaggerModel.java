@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.swagger.model;
+package com.yzp.spring.springbootsamples2_3_6.swagger.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

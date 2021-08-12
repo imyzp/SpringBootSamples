@@ -1,16 +1,13 @@
-package com.yzp.spring.springbootsamples.swagger.controller;
+package com.yzp.spring.springbootsamples2_3_6.swagger.controller;
 
-import com.yzp.spring.springbootsamples.swagger.model.SwaggerModel;
-import com.yzp.spring.springbootsamples.swagger.model.SwaggerModelForm;
+import com.yzp.spring.springbootsamples2_3_6.swagger.model.SwaggerModel;
+import com.yzp.spring.springbootsamples2_3_6.swagger.model.SwaggerModelForm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**

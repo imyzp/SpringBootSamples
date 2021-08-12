@@ -46,13 +46,13 @@ i18n
 
 ### 定时任务
 
-com.yzp.spring.springbootsamples.basic.schedule.ScheduleTask
+schedule
 
 ### 异步任务
 
-com.yzp.spring.springbootsamples.basic.controller.AsyncController
+async
 
-### 发送邮件
+### 自定义注解实现aop
 
-com.yzp.spring.springbootsamples.basic.mail.MailController
+aop
 

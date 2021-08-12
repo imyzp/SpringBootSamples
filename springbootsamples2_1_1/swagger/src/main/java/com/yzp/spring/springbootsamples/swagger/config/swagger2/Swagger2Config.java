@@ -1,6 +1,5 @@
-package com.yzp.spring.springbootsamples.swagger.config.swagger2;
+package com.yzp.spring.springbootsamples2_3_6.swagger.config.swagger2;
 
-import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import io.swagger.models.parameters.Parameter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
