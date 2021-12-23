@@ -1,8 +1,11 @@
 package com.yzp.spring.springbootsamples.basic;
 
 
+import com.yzp.spring.springbootsamples.basic.cors.CorsFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -19,4 +22,16 @@ public class BasicApplication {
         SpringApplication.run(BasicApplication.class,args);
     }
 
+
+    /**
+     * 将跨域拦截器注册到spring
+     * @return
+     */
+    @Bean
+    public FilterRegistrationBean<CorsFilter> corsFilter(){
+        FilterRegistrationBean<CorsFilter> registration = new FilterRegistrationBean<>(new CorsFilter());
+        registration.addUrlPatterns("/*");
+        registration.setOrder(1);
+        return registration;
+    }
 }

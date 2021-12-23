@@ -3,11 +3,12 @@ package com.yzp.spring.springbootsamples.basic.controller;
 
 import com.yzp.spring.springbootsamples.basic.async.IAscyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
-
+@CrossOrigin
 @RestController
 public class AsyncController {
 

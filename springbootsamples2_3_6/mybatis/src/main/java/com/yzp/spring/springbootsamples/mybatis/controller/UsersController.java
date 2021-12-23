@@ -1,24 +1,33 @@
 package com.yzp.spring.springbootsamples.mybatis.controller;
 
-import com.yzp.spring.springbootsamples.mybatis.model.Users;
+import com.yzp.spring.springbootsamples.mybatis.model.User;
 import com.yzp.spring.springbootsamples.mybatis.service.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UsersController {
     @Autowired
     private IUsersService usersService;
 
-    @PostMapping("addUsers")
-    public Users addUsers(@ModelAttribute Users users) {
-        try {
-            usersService.addUsers(users);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+    @PostMapping("/user")
+    public User addUsers(@RequestBody User users) throws Exception {
+        usersService.addUsers(users);
         return users;
+    }
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> user(@PathVariable(value = "id")Integer id){
+        User user = usersService.selectById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    @GetMapping("/user/{keyWord}")
+    public ResponseEntity<?> getByKeyWord(@PathVariable(value = "keyWord") String keyWord)
+    {
+        List<User> list = usersService.getByKeyWord(keyWord);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 }

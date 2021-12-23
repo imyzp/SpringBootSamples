@@ -2,6 +2,9 @@ spring:
   profiles:
     # 指定生效的的文件
     active: dev
-  servlet:
-    # 指定上下文路径
-    context-path: /springbootsamples
+# spring actuator 提供了对项目的监控功能,参考：https://www.cnblogs.com/ming-blogs/p/10697033.html
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

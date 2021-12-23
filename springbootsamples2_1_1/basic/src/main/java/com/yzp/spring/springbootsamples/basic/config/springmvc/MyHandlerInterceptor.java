@@ -20,12 +20,13 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
                 return true;
             } else {
 //                response.sendRedirect("/fs/loginModule/loginInView");
+                return true;
             }
         } catch (NullPointerException e) {
             //不存在loginResult，跳到主页
 //            response.sendRedirect("/fs/loginModule/loginInView");
 
         }
-        return false;
+        return true;
     }
 }
