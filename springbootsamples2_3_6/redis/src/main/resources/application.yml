@@ -2,7 +2,7 @@ server:
   # 指定端口
   port: 8083
   redis:
-    host: 127.0.0.1
+    host: 192.168.1.103
     password: 123456
     port: 6379
     jedis:

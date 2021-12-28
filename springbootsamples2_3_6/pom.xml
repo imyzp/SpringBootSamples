@@ -10,6 +10,7 @@
     <modules>
         <module>poi</module>
         <module>maven</module>
+        <module>quartz</module>
     </modules>
     <packaging>pom</packaging>
 
