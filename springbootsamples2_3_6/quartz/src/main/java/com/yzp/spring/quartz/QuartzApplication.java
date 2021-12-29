@@ -1,10 +1,12 @@
 package com.yzp.spring.quartz;
 
-/**
- * @ProjectName springbootsamples2_3_6
- * @Description TODO
- * @Author yaozhenpeng
- * @Time 2021/12/28 22:30
- */
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+
+@SpringBootApplication
 public class QuartzApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(QuartzApplication.class,args);
+    }
 }

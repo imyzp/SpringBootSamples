@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @ProjectName springbootsamples2_3_6
- * @Description TODO
+ * @Description 测试
  * @Author yaozhenpeng
  * @Time 2021/12/28 23:26
  */
@@ -19,12 +19,17 @@ public class QuartzController {
     @Autowired
     private Scheduler scheduler;
 
+    /**
+     * 创建任务
+     * @param quartzBean
+     * @return
+     */
     @RequestMapping("/createJob")
     @ResponseBody
     public String  createJob(QuartzBean quartzBean)  {
         try {
             //进行测试所以写死
-            quartzBean.setJobClass("com.hjljy.blog.Quartz.MyTask1");
+            quartzBean.setJobClass("com.yzp.spring.quartz.job.Job1");
             quartzBean.setJobName("test1");
             quartzBean.setCronExpression("*/10 * * * * ?");
             QuartzUtils.createScheduleJob(scheduler,quartzBean);
@@ -34,6 +39,10 @@ public class QuartzController {
         return "创建成功";
     }
 
+    /**
+     * 暂停任务
+     * @return
+     */
     @RequestMapping("/pauseJob")
     @ResponseBody
     public String  pauseJob()  {
@@ -45,6 +54,10 @@ public class QuartzController {
         return "暂停成功";
     }
 
+    /**
+     * 运行一次
+     * @return
+     */
     @RequestMapping("/runOnce")
     @ResponseBody
     public String  runOnce()  {
@@ -56,11 +69,14 @@ public class QuartzController {
         return "运行一次成功";
     }
 
+    /**
+     * 重新开始
+     * @return
+     */
     @RequestMapping("/resume")
     @ResponseBody
     public String  resume()  {
         try {
-
             QuartzUtils.resumeScheduleJob(scheduler,"test1");
         } catch (Exception e) {
             return "启动失败";
@@ -68,12 +84,17 @@ public class QuartzController {
         return "启动成功";
     }
 
+    /**
+     *
+     * @param quartzBean
+     * @return
+     */
     @RequestMapping("/update")
     @ResponseBody
     public String  update(QuartzBean quartzBean)  {
         try {
             //进行测试所以写死
-            quartzBean.setJobClass("com.hjljy.blog.Quartz.MyTask1");
+            quartzBean.setJobClass("com.yzp.spring.quartz.job.Job1");
             quartzBean.setJobName("test1");
             quartzBean.setCronExpression("10 * * * * ?");
             QuartzUtils.updateScheduleJob(scheduler,quartzBean);
