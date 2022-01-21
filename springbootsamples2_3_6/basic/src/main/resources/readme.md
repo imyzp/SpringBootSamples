@@ -62,3 +62,8 @@ api
 
 ### spring 接口参数校验方法
 
+validation
+
+### 系统配置参数
+
+configparam
