@@ -11,6 +11,7 @@
         <module>poi</module>
         <module>maven</module>
         <module>quartz</module>
+        <module>elasticjob</module>
     </modules>
     <packaging>pom</packaging>
 
