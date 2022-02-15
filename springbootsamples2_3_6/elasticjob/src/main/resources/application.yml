@@ -13,15 +13,25 @@ job:
     serverList: localhost:2181
     namespace: demo-job
 
+# 普通任务例子
   demojob:
     className: com.yzp.spring.springbootsamples.elasticjob.demojob.DemoJob
     cron: "*/5 10 * * * ? "
     shardingTotalCount: 1
     jobName: "demojob"
 
+# 分片任务例子
   personJob:
     className: com.yzp.spring.springbootsamples.elasticjob.shardJob.PersonJob
     cron: "*/5 * * * * ?"
     shardingTotalCount: 2
     jobName: "job-sharding-person"
     shardingParameter: "0=0,1=1" #分片参数，前面是分片序号，后面是分片数据，此处0代表女 1代表男
+
+# 数据流式任务
+  personDataFlowJob:
+    className: com.yzp.spring.springbootsamples.elasticjob.shardJobDataFlow.Person2Job
+    cron: "*/10 * * * * ?"
+    shardingTotalCount: 2
+    jobName: "job-sharding-person-dataflow"
+    shardingParameter: "0=0,1=1" #分片参数，前面是分片序号，后面是分片数据 此处0代表女 1代表男
