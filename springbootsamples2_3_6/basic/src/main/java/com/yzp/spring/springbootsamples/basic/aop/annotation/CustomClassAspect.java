@@ -7,16 +7,20 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 
 @Component
 @Aspect
+@Order(value = Integer.MIN_VALUE +10)// 加10为了防止报错 https://blog.csdn.net/weixin_30834019/article/details/101360990
 public class CustomClassAspect {
     /**
      * @within 作用在类上
+     * execution 排除不需要拦截的方法
      */
-    @Pointcut(value = "@within(com.yzp.spring.springbootsamples.basic.aop.annotation.CustomClassAnnotation)")
+    @Pointcut(value = "@within(com.yzp.spring.springbootsamples.basic.aop.annotation.CustomClassAnnotation) && " +
+            "!execution(* com.yzp.spring.springbootsamples.basic.aop.api.AopClassController.exclude())")
     public void pointCut(){
 
     }

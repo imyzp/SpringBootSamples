@@ -6,11 +6,13 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 
 @Component
 @Aspect
+@Order(value = Integer.MIN_VALUE +10)// 加10为了防止报错 https://blog.csdn.net/weixin_30834019/article/details/101360990
 public class CustomAspect {
     /**
      * @annotation 作用在方法上
