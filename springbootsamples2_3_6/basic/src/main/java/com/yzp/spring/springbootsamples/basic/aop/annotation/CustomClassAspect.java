@@ -9,6 +9,14 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 @Component
@@ -26,10 +34,41 @@ public class CustomClassAspect {
     }
     @Before("pointCut()")
     public void before(JoinPoint joinPoint){
-        System.out.println("adfa");
-
+        // 获取url参数到map
+        ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        Map<String, Object> parameterMap = getParameterMap(request);
     }
+    private Map<String, Object> getParameterMap(HttpServletRequest request) {
+        // 参数Map
+        Map<?, ?> properties = request.getParameterMap();
+        // 返回值Map
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+        Iterator<?> entries = properties.entrySet().iterator();
 
+        Map.Entry<String, Object> entry;
+        String name = "";
+        String value = "";
+        Object valueObj =null;
+        while (entries.hasNext()) {
+            entry = (Map.Entry<String, Object>) entries.next();
+            name = (String) entry.getKey();
+            valueObj = entry.getValue();
+            if (null == valueObj) {
+                value = "";
+            } else if (valueObj instanceof String[]) {
+                String[] values = (String[]) valueObj;
+                for (int i = 0; i < values.length; i++) {
+                    value = values[i] + ",";
+                }
+                value = value.substring(0, value.length() - 1);
+            } else {
+                value = valueObj.toString();
+            }
+            returnMap.put(name, value);
+        }
+        return returnMap;
+    }
     /**
      * 环绕拦截
      * @param joinPoint

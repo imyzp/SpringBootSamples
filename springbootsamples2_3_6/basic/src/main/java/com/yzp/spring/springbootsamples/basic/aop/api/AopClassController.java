@@ -2,10 +2,7 @@ package com.yzp.spring.springbootsamples.basic.aop.api;
 
 import com.yzp.spring.springbootsamples.basic.aop.model.UserAop;
 import com.yzp.spring.springbootsamples.basic.aop.annotation.CustomClassAnnotation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 作用在类上的aop
@@ -16,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AopClassController {
 
     @GetMapping("/aoptest/class/{id}")
-    public UserAop aopTest(@PathVariable("id") Integer id){
+    public UserAop aopTest(@PathVariable("id") Integer id, @RequestParam(value = "applicationName",required = false) String applicationName){
         return new UserAop().setName("dd").setId(id);
     }
     @GetMapping("/aoptest/class/exclude")

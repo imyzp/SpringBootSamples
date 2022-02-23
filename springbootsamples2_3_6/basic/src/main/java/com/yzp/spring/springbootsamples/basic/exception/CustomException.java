@@ -1,6 +1,6 @@
 package com.yzp.spring.springbootsamples.basic.exception;
 
-public class CustomException extends Exception{
+public class CustomException extends RuntimeException{
     public CustomException() {
     }
 
