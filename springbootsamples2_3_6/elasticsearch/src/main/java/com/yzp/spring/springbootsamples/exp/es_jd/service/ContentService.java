@@ -1,7 +1,7 @@
-package com.yzp.spring.springbootsamples.es.service;
+package com.yzp.spring.springbootsamples.exp.es_jd.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yzp.spring.springbootsamples.es.model.Content;
+import com.yzp.spring.springbootsamples.exp.es_jd.model.Content;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;

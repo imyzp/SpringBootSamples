@@ -38,6 +38,7 @@ public class CustomClassAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         Map<String, Object> parameterMap = getParameterMap(request);
+        System.out.println("dsf");
     }
     private Map<String, Object> getParameterMap(HttpServletRequest request) {
         // 参数Map

@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.es.model;
+package com.yzp.spring.springbootsamples.exp.es_jd.model;
 
 public class Content {
     private String title;

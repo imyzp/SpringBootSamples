@@ -1,6 +1,6 @@
-package com.yzp.spring.springbootsamples.es.controller;
+package com.yzp.spring.springbootsamples.exp.es_jd.controller;
 
-import com.yzp.spring.springbootsamples.es.service.ContentService;
+import com.yzp.spring.springbootsamples.exp.es_jd.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

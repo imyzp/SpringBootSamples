@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("")
 public class AopClassController {
 
-    @GetMapping("/aoptest/class/{id}")
-    public UserAop aopTest(@PathVariable("id") Integer id, @RequestParam(value = "applicationName",required = false) String applicationName){
+    @PostMapping("/aoptest/class/{id}")
+    public UserAop aopTest(@PathVariable("id") Integer id, @RequestParam(value = "applicationName",required = false) String applicationName,@RequestBody UserAop userAop){
         return new UserAop().setName("dd").setId(id);
     }
     @GetMapping("/aoptest/class/exclude")
