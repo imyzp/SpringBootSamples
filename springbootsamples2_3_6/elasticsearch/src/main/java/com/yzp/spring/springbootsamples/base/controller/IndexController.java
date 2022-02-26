@@ -22,7 +22,15 @@ public class IndexController {
 
     @GetMapping("/createIndex/{indexName}")
     public ResponseEntity createIndex(@PathVariable("indexName") String indexName) throws IOException {
-        boolean index = indexTestService.createIndex(indexName);
-        return ResponseEntity.ok(index);
+        boolean acknowledged = indexTestService.createIndex(indexName);
+        return ResponseEntity.ok(acknowledged);
+    }
+    @GetMapping("/indexDetail/{indexName}")
+    public ResponseEntity queryIndex(@PathVariable("indexName") String indexName) throws IOException {
+        return ResponseEntity.ok(indexTestService.indexDetail(indexName));
+    }
+    @GetMapping("/deleteIndex/{indexName}")
+    public ResponseEntity deleteIndex(@PathVariable("indexName") String indexName) throws IOException {
+        return ResponseEntity.ok(indexTestService.deleteIndex(indexName));
     }
 }

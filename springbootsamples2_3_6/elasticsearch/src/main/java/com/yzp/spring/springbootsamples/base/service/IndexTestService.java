@@ -1,5 +1,7 @@
 package com.yzp.spring.springbootsamples.base.service;
 
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
@@ -8,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 /**
  * @ProjectName springbootsamples2_3_6
@@ -26,12 +25,6 @@ public class IndexTestService {
 
     // 创建索引
     public boolean createIndex(String indexName) throws IOException {
-        // 获取当前时间戳
-        ZoneId zoneId = ZoneId.systemDefault();
-        Instant instant = LocalDateTime.now().atZone(zoneId).toInstant();
-        long l = instant.toEpochMilli();
-
-        indexName = indexName+"_"+l;
         // 创建索引-请求对象
         CreateIndexRequest createIndexRequest = new CreateIndexRequest(indexName);
         // 发送请求，获取响应
@@ -39,5 +32,17 @@ public class IndexTestService {
         // 得到操作状态
         boolean acknowledged = createIndexResponse.isAcknowledged();
         return acknowledged;
+    }
+    // todo根据索引名称查看索引详情
+    public Object indexDetail(String indexName) throws IOException {
+
+        return null;
+    }
+
+    // 删除索引
+    public boolean deleteIndex(String indexName) throws IOException {
+        DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest(indexName);
+        AcknowledgedResponse response = restHighLevelClient.indices().delete(deleteIndexRequest, RequestOptions.DEFAULT);
+        return response.isAcknowledged();
     }
 }
