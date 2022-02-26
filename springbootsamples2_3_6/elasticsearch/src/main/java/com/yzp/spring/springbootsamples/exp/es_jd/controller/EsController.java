@@ -15,9 +15,9 @@ public class EsController {
     @Autowired
     private ContentService contentService;
 
-    @GetMapping("/parse/{keyword}")
-    public Boolean parse(@PathVariable("keyword") String keyword) throws Exception {
-        return contentService.parseContent(keyword);
+    @GetMapping("/write2es")
+    public Boolean parse() throws Exception {
+        return contentService.parseContent();
     }
 
     @GetMapping("/search/{keyword}/{pageNo}/{pageSize}")

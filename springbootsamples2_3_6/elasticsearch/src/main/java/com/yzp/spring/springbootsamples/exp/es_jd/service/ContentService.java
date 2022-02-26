@@ -38,11 +38,10 @@ public class ContentService {
 
     /**
      * 写入es
-     * @param keywords
      * @return
      * @throws Exception
      */
-    public Boolean parseContent(String keywords) throws Exception {
+    public Boolean parseContent() throws Exception {
         List<Content> contents = new ArrayList<>();
         contents.add(new Content("1","dd.img","30"));
         contents.add(new Content("2","dd.img","30"));

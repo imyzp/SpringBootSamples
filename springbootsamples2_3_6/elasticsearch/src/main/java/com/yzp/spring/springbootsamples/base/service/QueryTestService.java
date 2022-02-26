@@ -6,8 +6,11 @@ import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.index.query.TermQueryBuilder;
 import org.springframework.stereotype.Service;
 
+/**
+ * es查询操作
+ */
 @Service
-public class QueryService {
+public class QueryTestService {
     // 常见查询
     public void query(){
         // 单字段范围查找 >= gte > gt  , <= lte  < lt
