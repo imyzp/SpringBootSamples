@@ -22,6 +22,10 @@ public class DocController {
     public ResponseEntity addDoc(@PathVariable("indexName") String indexName) throws IOException {
         return ResponseEntity.ok(docTestService.addDoc2Index(indexName));
     }
+    @PostMapping("/batchAddDoc/{indexName}")
+    public ResponseEntity batchAddDoc(@PathVariable("indexName") String indexName) throws IOException {
+        return ResponseEntity.ok(docTestService.batchAddDoc2Index(indexName));
+    }
     @PutMapping("/updateDoc/{indexName}")
     public ResponseEntity updateDoc(@PathVariable("indexName") String indexName) throws IOException {
         return ResponseEntity.ok(docTestService.updateDocByIndex(indexName));
@@ -29,5 +33,9 @@ public class DocController {
     @GetMapping("/getDoc/{indexName}")
     public ResponseEntity getDoc(@PathVariable("indexName") String indexName) throws IOException {
         return ResponseEntity.ok(docTestService.getDoc(indexName));
+    }
+    @DeleteMapping("/batchDeleteDoc/{indexName}")
+    public ResponseEntity batchDeleteDoc(@PathVariable("indexName") String indexName) throws IOException {
+        return ResponseEntity.ok(docTestService.batchDeleteDoc(indexName));
     }
 }
