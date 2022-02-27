@@ -2,7 +2,7 @@ package com.yzp.spring.springbootsamples.base.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yzp.spring.springbootsamples.base.model.BatchDocWriteRes;
-import com.yzp.spring.springbootsamples.base.model.DocDetail;
+import com.yzp.spring.springbootsamples.base.model.DocDetailVO;
 import com.yzp.spring.springbootsamples.base.model.DocGetRes;
 import com.yzp.spring.springbootsamples.base.model.DocWriteRes;
 import org.elasticsearch.action.DocWriteResponse;
@@ -44,7 +44,7 @@ public class DocTestService {
         // 指定当前添加的文档唯一id
         indexRequest.id("1001");
         // 生成文档数据为json
-        DocDetail docDetail = new DocDetail();
+        DocDetailVO docDetail = new DocDetailVO();
         docDetail.setName("zhangsan");
         docDetail.setAge(30);
         docDetail.setSex("男");

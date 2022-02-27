@@ -1,16 +1,27 @@
 package com.yzp.spring.springbootsamples.base.service;
 
-import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.RangeQueryBuilder;
-import org.elasticsearch.index.query.TermQueryBuilder;
+import com.yzp.spring.springbootsamples.base.model.DocQueryRes;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.index.query.*;
+import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 /**
  * es查询操作
  */
 @Service
 public class QueryTestService {
+    @Autowired
+    private RestHighLevelClient restHighLevelClient;
+
     // 常见查询
     public void query(){
         // 单字段范围查找 >= gte > gt  , <= lte  < lt
@@ -48,5 +59,47 @@ public class QueryTestService {
         ;
         //
         ;
+    }
+
+    // 查询索引的所有数据
+    public DocQueryRes getDocData(String indexName) throws IOException {
+
+        SearchRequest searchRequest = new SearchRequest();
+        // 指定索引
+        searchRequest.indices(indexName);
+
+        // 设置查询请求条件
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        // 查询所有数据
+        MatchAllQueryBuilder matchAllQueryBuilder = QueryBuilders.matchAllQuery();
+        searchSourceBuilder.query(matchAllQueryBuilder);
+        searchRequest.source(searchSourceBuilder);
+        // 发送请求，获取响应
+        SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+        SearchHits hits = searchResponse.getHits();
+        TimeValue took = searchResponse.getTook();
+        boolean timedOut = searchResponse.isTimedOut();
+        DocQueryRes docQueryRes = new DocQueryRes().setHits(hits).setTook(took).setTimedOut(timedOut);
+        return docQueryRes;
+    }
+    // 关键词精确查找文档
+    public Object termQuery(String indexName) throws IOException {
+        SearchRequest searchRequest = new SearchRequest();
+        // 指定索引
+        searchRequest.indices(indexName);
+
+        // 设置查询请求条件
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        // 根据关键词查找
+        TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("age", "20");
+        searchSourceBuilder.query(termQueryBuilder);
+        searchRequest.source(searchSourceBuilder);
+        // 发送请求，获取响应
+        SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+        SearchHits hits = searchResponse.getHits();
+        TimeValue took = searchResponse.getTook();
+        boolean timedOut = searchResponse.isTimedOut();
+        DocQueryRes docQueryRes = new DocQueryRes().setHits(hits).setTook(took).setTimedOut(timedOut);
+        return docQueryRes;
     }
 }

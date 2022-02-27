@@ -6,7 +6,7 @@ package com.yzp.spring.springbootsamples.base.model;
  * @Author yaozhenpeng
  * @Time 2022/2/26 21:10
  */
-public class DocDetail {
+public class DocDetailVO {
     private String name;
     private Integer age;
     private String sex;
