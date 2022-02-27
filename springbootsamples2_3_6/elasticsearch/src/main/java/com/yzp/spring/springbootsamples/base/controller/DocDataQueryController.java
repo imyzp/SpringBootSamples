@@ -28,4 +28,12 @@ public class DocDataQueryController {
     public ResponseEntity termQuery(@PathVariable("indexName") String indexName) throws IOException {
         return ResponseEntity.ok(queryTestService.termQuery(indexName));
     }
+    @GetMapping("/doc/matchAllQuery/{indexName}/{pageNo}/{pageSize}")
+    public ResponseEntity page(@PathVariable("indexName") String indexName,@PathVariable("pageNo") Integer pageNo,@PathVariable("pageSize") Integer pageSize) throws IOException {
+        return ResponseEntity.ok(queryTestService.page(indexName,pageNo,pageSize));
+    }
+    @GetMapping("/doc/matchAllQuery/{indexName}/age/{sort}")
+    public ResponseEntity sort(@PathVariable("indexName") String indexName,@PathVariable("sort") String sort) throws IOException {
+        return ResponseEntity.ok(queryTestService.sort(indexName,sort));
+    }
 }

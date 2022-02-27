@@ -46,7 +46,7 @@ public class DocTestService {
         // 生成文档数据为json
         DocDetailVO docDetail = new DocDetailVO();
         docDetail.setName("zhangsan");
-        docDetail.setAge(30);
+        docDetail.setAge(20);
         docDetail.setSex("男");
         ObjectMapper objectMapper = new ObjectMapper();
         String docJson = objectMapper.writeValueAsString(docDetail);
@@ -71,7 +71,7 @@ public class DocTestService {
             // 指定当前添加的文档唯一id
             indexRequest.id("100"+i);
             // 指定文档数据
-            indexRequest.source(XContentType.JSON, "name","zhangsan"+i);
+            indexRequest.source(XContentType.JSON, "name","zhangsan"+i,"age",i);
             bulkRequest.add(indexRequest);
         }
         // 发送请求获取响应
