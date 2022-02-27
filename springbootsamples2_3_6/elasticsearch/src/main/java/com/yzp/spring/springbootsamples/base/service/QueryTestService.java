@@ -154,4 +154,27 @@ public class QueryTestService {
         DocQueryRes docQueryRes = new DocQueryRes().setHits(hits).setTook(took).setTimedOut(timedOut);
         return docQueryRes;
     }
+
+    public Object filterColumn(String indexName) throws IOException {
+        SearchRequest searchRequest = new SearchRequest();
+        // 指定索引
+        searchRequest.indices(indexName);
+
+        // 设置查询请求条件
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        // 查询所有数据
+        MatchAllQueryBuilder matchAllQueryBuilder = QueryBuilders
+        // 设置过滤字段
+        String[] excludes = {};
+        String[] includes = {"name","age"};
+        searchSourceBuilder.fetchSource(includes,excludes);
+        // 发送请求，获取响应
+        searchRequest.source(searchSourceBuilder);
+        SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+        SearchHits hits = searchResponse.getHits();
+        TimeValue took = searchResponse.getTook();
+        boolean timedOut = searchResponse.isTimedOut();
+        DocQueryRes docQueryRes = new DocQueryRes().setHits(hits).setTook(took).setTimedOut(timedOut);
+        return docQueryRes;
+    }
 }

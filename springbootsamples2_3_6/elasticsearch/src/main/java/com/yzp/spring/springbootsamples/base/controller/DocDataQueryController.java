@@ -36,4 +36,8 @@ public class DocDataQueryController {
     public ResponseEntity sort(@PathVariable("indexName") String indexName,@PathVariable("sort") String sort) throws IOException {
         return ResponseEntity.ok(queryTestService.sort(indexName,sort));
     }
+    @GetMapping("/doc/matchAllQuery/{indexName}/filterColumn")
+    public ResponseEntity filterColumn(@PathVariable("indexName") String indexName) throws IOException {
+        return ResponseEntity.ok(queryTestService.filterColumn(indexName));
+    }
 }
