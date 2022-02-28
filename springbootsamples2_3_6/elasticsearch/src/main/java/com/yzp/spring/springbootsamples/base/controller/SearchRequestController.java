@@ -11,12 +11,12 @@ import java.io.IOException;
 
 /**
  * @ProjectName springbootsamples2_3_6
- * @Description 索引文档查询操作
+ * @Description 索引文档es单查询操作
  * @Author yaozhenpeng
  * @Time 2022/2/27 14:16
  */
 @RestController
-public class DocDataQueryController {
+public class SearchRequestController {
     @Autowired
     QueryTestService queryTestService;
 
