@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.basic.str;
+package com.yzp.jdk.stringutil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

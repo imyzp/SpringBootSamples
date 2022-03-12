@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.basic.util.springutil;
+package com.yzp.springUtil.asserts;
 
 import org.springframework.util.Assert;
 

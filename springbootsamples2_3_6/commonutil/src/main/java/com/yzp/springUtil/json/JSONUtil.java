@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.basic.json;
+package com.yzp.springUtil.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;

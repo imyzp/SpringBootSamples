@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.basic.util.javautil;
+package com.yzp.jdk.fileutil;
 
 public class FileTool {
     public static void main(String[] args) {

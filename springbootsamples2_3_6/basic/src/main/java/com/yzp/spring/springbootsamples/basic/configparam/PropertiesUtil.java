@@ -1,6 +1,6 @@
 package com.yzp.spring.springbootsamples.basic.configparam;
 
-import com.yzp.spring.springbootsamples.basic.json.JSONUtil;
+import com.yzp.springUtil.json.JSONUtil;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;

@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.basic.util.javautil;
+package com.yzp.jdk.timeutil;
 
 public class DateTool {
     /**

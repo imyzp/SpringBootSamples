@@ -12,6 +12,7 @@
         <module>maven</module>
         <module>quartz</module>
         <module>elasticjob</module>
+        <module>apachecommon</module>
     </modules>
     <packaging>pom</packaging>
 

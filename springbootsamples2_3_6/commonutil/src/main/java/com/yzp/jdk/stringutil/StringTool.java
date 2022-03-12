@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.basic.util.javautil;
+package com.yzp.jdk.stringutil;
 
 public class StringTool {
     public String replace(){

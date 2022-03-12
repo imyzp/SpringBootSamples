@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.basic.util.springutil;
+package com.yzp.springUtil.bean;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapperImpl;
