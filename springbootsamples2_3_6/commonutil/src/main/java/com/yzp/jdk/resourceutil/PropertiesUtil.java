@@ -1,4 +1,4 @@
-package com.yzp.spring.springbootsamples.basic.configparam;
+package com.yzp.jdk.resourceutil;
 
 import com.yzp.springUtil.json.JSONUtil;
 import java.io.IOException;
