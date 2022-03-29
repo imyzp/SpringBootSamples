@@ -1,5 +1,6 @@
+
 spring:
   data:
     mongodb:
-      # 库名db1
-      uri: mongodb://127.0.0.1:27017/db1
+      # mongodb://账号:密码@localhost:27017/数据库
+      uri: mongodb://yzp:123456@localhost:27017/admin
