@@ -1,0 +1,3 @@
+BeanPostProcessor官方定义为工厂钩子，我们也俗称后置处理器。它允许自定义修改新的bean实例，
+例如检查标记接口或用代理包装它们。应用程序上下文可以在其bean定义中自动检测BeanPostProcessor bean，
+并将它们应用于随后创建的任何bean。
