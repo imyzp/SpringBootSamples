@@ -1,7 +1,7 @@
 package com.yzp.spring.springbootsamples.basic;
 
 
-import com.yzp.spring.springbootsamples.basic.cors.CorsFilter;
+import com.yzp.spring.springbootsamples.basic.usage.cors.CorsFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
