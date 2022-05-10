@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @ProjectName springbootsamples2_3_6
  * @Description 初始化topic的配置类
- * 参考：https://blog.csdn.net/qq_34533957/article/details/108350369?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0.pc_relevant_default&spm=1001.2101.3001.4242.1&utm_relevant_index=3
+ * 看完docker在继续参考：https://blog.csdn.net/qq_34533957/article/details/108350369?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0.pc_relevant_default&spm=1001.2101.3001.4242.1&utm_relevant_index=3
  * @Author yaozhenpeng
  * @Time 2022/5/5 22:52
  */
