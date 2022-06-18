@@ -16,6 +16,7 @@
         <module>mongodb</module>
         <module>kafka-producer</module>
         <module>kafka-consumer</module>
+        <module>redisson</module>
     </modules>
     <packaging>pom</packaging>
 

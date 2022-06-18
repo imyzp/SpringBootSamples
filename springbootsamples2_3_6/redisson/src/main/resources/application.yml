@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: redisson
+  redis:
+    redisson:
+      file: classpath:redisson.yml
+
+server:
+  port: 9888
