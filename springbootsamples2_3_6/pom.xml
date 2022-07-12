@@ -17,6 +17,7 @@
         <module>kafka-producer</module>
         <module>kafka-consumer</module>
         <module>redisson</module>
+        <module>docker</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -90,4 +91,13 @@
             <artifactId>spring-test</artifactId>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <!--            SpringBoot的构建的插件 打包的jar,运行时不会出现找不到主清单属性-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
