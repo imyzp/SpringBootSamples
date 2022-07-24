@@ -1,0 +1,14 @@
+# 版本
+version: '3.8'
+services:
+  yzpapp:
+    build: . # 默认代表当前目录的Dockerfile文件
+    image: yzpapp # 镜像
+    depends_on:
+      - redis # 依赖于redis的服务
+    ports:
+      - "8080:8080"
+  redis:
+    image: "library/redis:alpine"  # 使用了仓库的redis精简版镜像
+
+

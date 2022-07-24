@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    # 指定生效的的文件
+    active: dev

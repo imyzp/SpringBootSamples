@@ -18,6 +18,7 @@
         <module>kafka-consumer</module>
         <module>redisson</module>
         <module>docker</module>
+        <module>docker-compose</module>
     </modules>
     <packaging>pom</packaging>
 
